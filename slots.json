@@ -10,10 +10,10 @@
  "slots": [
   {
    "slot": 1,
-   "name": "House of Maxii",
+   "name": "Test_Banner",
    "image": "banners/slot_01.png",
    "on": true,
-   "seconds": 8
+   "seconds": 10
   }
  ]
 }
