@@ -116,6 +116,8 @@ function apply(req) {
     message: what + (s.name ? ' (' + s.name + ')' : '') + ' [form]',
     tree: newTree.sha,
     parents: [head.object.sha],
+    // GitHub's private no-reply address, so the public history never shows a real email.
+    author: { name: 'Maxii-VR', email: '68758381+Maxii-VR@users.noreply.github.com' },
   });
   gh('/git/refs/heads/' + BRANCH, 'patch', { sha: commit.sha });
   return what + ' -> ' + commit.sha.slice(0, 7);
