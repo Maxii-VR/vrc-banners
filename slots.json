@@ -19,7 +19,7 @@
    "slot": 2,
    "name": "tEST",
    "image": "banners/slot_02.png",
-   "on": true,
+   "on": false,
    "seconds": 10
   }
  ]
