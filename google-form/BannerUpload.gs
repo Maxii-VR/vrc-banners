@@ -65,10 +65,13 @@ function read(response) {
   const slot = parseInt(a.slot, 10);
   if (!(slot >= 1 && slot <= 99)) throw new Error('Bad slot: ' + a.slot);
   const action = String(a.action || 'Upload').toLowerCase();
+  const fileId = Array.isArray(a.image) && a.image.length ? a.image[0] : null;
+  let mode = action.indexOf('off') >= 0 ? 'off' : action.indexOf('on') >= 0 && action.indexOf('upload') < 0 ? 'on' : 'upload';
+  if (fileId && mode === 'on') mode = 'upload';   // an attached image always means "use this image"
   return {
     slot: slot,
-    mode: action.indexOf('off') >= 0 ? 'off' : action.indexOf('on') >= 0 && action.indexOf('upload') < 0 ? 'on' : 'upload',
-    fileId: Array.isArray(a.image) && a.image.length ? a.image[0] : null,
+    mode: mode,
+    fileId: fileId,
     seconds: a.seconds ? parseFloat(String(a.seconds).replace(',', '.')) : null,
     name: a.name ? String(a.name).trim() : null,
   };
@@ -92,8 +95,9 @@ function apply(req) {
   if (req.mode === 'upload') {
     if (!req.fileId) throw new Error('Upload / replace needs an image.');
     const blob = DriveApp.getFileById(req.fileId).getBlob();
-    const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[blob.getContentType()];
-    if (!ext) throw new Error('Unsupported image type ' + blob.getContentType() + ' (use PNG or JPG).');
+    // GIF: build.py takes the first frame (VRChat shows downloaded images as stills).
+    const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif' }[blob.getContentType()];
+    if (!ext) throw new Error('Unsupported image type ' + blob.getContentType() + ' (use PNG, JPG, WebP or GIF).');
     const path = 'banners/slot_' + ('0' + req.slot).slice(-2) + '.' + ext;
     const b = gh('/git/blobs', 'post', { content: Utilities.base64Encode(blob.getBytes()), encoding: 'base64' });
     tree.push({ path: path, mode: '100644', type: 'blob', sha: b.sha });
