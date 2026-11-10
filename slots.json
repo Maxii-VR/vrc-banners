@@ -1,0 +1,68 @@
+{
+ "cell": [
+  1200,
+  300
+ ],
+ "perSheet": 6,
+ "gutter": 32,
+ "maxSheets": 4,
+ "quality": 92,
+ "slots": [
+  {
+   "slot": 1,
+   "name": "House of Maxii",
+   "image": "banners/slot_01.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 2,
+   "name": "Test copy 2",
+   "image": "banners/slot_02.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 3,
+   "name": "Test copy 3",
+   "image": "banners/slot_03.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 4,
+   "name": "Test copy 4",
+   "image": "banners/slot_04.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 5,
+   "name": "Test copy 5",
+   "image": "banners/slot_05.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 6,
+   "name": "Test copy 6",
+   "image": "banners/slot_06.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 7,
+   "name": "Test copy 7",
+   "image": "banners/slot_07.png",
+   "on": true,
+   "seconds": 8
+  },
+  {
+   "slot": 8,
+   "name": "Test copy 8",
+   "image": "banners/slot_08.png",
+   "on": true,
+   "seconds": 8
+  }
+ ]
+}
