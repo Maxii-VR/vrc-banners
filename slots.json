@@ -14,6 +14,13 @@
    "image": "banners/slot_01.png",
    "on": true,
    "seconds": 10
+  },
+  {
+   "slot": 2,
+   "name": "tEST",
+   "image": "banners/slot_02.png",
+   "on": true,
+   "seconds": 10
   }
  ]
 }
