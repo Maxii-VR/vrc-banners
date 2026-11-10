@@ -101,7 +101,9 @@ def main():
         json.dump(manifest, f, indent=1)
 
     rows = "".join(f'<h3>{b["slot"]}. {b["name"]} ({b["seconds"]:g} s) - sheet {b["sheet"]}</h3>' for b in banners)
-    imgs = "".join(f'<p><img src="{s["file"]}" style="max-width:100%"></p>' for s in sheets)
+    # ?v= makes a refreshed preview page fetch new sheets instead of the browser's cached ones.
+    stamp = manifest["built"].replace(":", "")
+    imgs = "".join(f'<p><img src="{s["file"]}?v={stamp}" style="max-width:100%"></p>' for s in sheets)
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(f'<!doctype html><meta charset="utf-8"><title>Banners</title>'
                 f'<body style="background:#111;color:#ddd;font-family:sans-serif">'
